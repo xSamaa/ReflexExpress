@@ -8,14 +8,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Menu extends AppCompatActivity {
 
     private EditText txtNombre;
-    private TextView tv11,tv12,tv21,tv22,tv31,tv32;
+    private ListView lvLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +27,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         txtNombre = (EditText) findViewById(R.id.txtNombre);
-        tv11 = (TextView)findViewById(R.id.tv11);
-        tv12 = (TextView)findViewById(R.id.tv12);
-        tv21 = (TextView)findViewById(R.id.tv21);
-        tv22 = (TextView)findViewById(R.id.tv22);
-        tv31 = (TextView)findViewById(R.id.tv31);
-        tv32 = (TextView)findViewById(R.id.tv32);
+        lvLista = (ListView) findViewById(R.id.lvLista);
     }
 
     public void verClasi(View view) {
@@ -36,20 +35,20 @@ public class Menu extends AppCompatActivity {
         DBHelper db = new DBHelper(this,"clasificacion", null, 1);
         SQLiteDatabase baseDeDatos = db.getWritableDatabase();
 
-        Cursor fila = baseDeDatos.rawQuery("select * from usuarios order by puntuacion asc", null);
+        Cursor fila = baseDeDatos.rawQuery("select * from usuarios order by puntuacion desc", null);
 
-        if(fila.moveToFirst()){
+        ArrayList<String> datos = new ArrayList<String>();
+
+        if(fila.moveToNext()){
             do{
-                tv11.setText(fila.getString(0));
-                tv12.setText(fila.getString(1));
-                tv11.setVisibility(View.VISIBLE);
-                tv12.setVisibility(View.VISIBLE);
+                datos.add("# " +fila.getString(1)+"     "+ fila.getString(0) + "\n");
             }while(fila.moveToNext());
-            baseDeDatos.close();
-        }else {
-            Toast.makeText(this,"No encuentro",Toast.LENGTH_SHORT).show();
-            baseDeDatos.close();
         }
+        //VISUALIZACION, por defenco estan en Android.Layout
+        // Adaptador
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos);
+
+        lvLista.setAdapter(adaptador);
 
     }
 
