@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         baseDeDatos.insert("usuarios",null, registro);
         baseDeDatos.close();
 
-        Toast.makeText(getApplicationContext(), "Inserción de nombre correcto." + puntuacion, Toast.LENGTH_SHORT).show();
-
 
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
