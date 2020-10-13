@@ -31,7 +31,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public void verClasi(View view) {
-
+        // Abrir la base de datos.
         DBHelper db = new DBHelper(this,"clasificacion", null, 1);
         SQLiteDatabase baseDeDatos = db.getWritableDatabase();
 
