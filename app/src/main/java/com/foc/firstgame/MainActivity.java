@@ -12,6 +12,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean aleatorio;
     private int puntuacion;
     private DBHelper db =null;
+    private Animation animacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         btnDer = findViewById(R.id.btnDer);
         btnCambio = findViewById(R.id.btnCambio);
 
+        Context context;
+        animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
 
         colorAutomatico();
 
@@ -81,15 +86,18 @@ public class MainActivity extends AppCompatActivity {
         aleatorio = Math.random()<0.5;
 
         if (aleatorio){
+
             btnCambio.setBackgroundColor(Color.BLACK);
             btnCambio.setText("negro");
             btnCambio.setTextColor(Color.BLACK);
+            btnCambio.startAnimation(animacion);
 
 
         }else{
             btnCambio.setBackgroundColor(Color.RED);
             btnCambio.setText("rojo");
             btnCambio.setTextColor(Color.RED);
+            btnCambio.startAnimation(animacion);
 
         }
     }
