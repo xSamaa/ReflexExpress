@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">firstGame</string>
+    <string name="jugar">Jugar</string>
+    <string name="clasi">Top 1</string>
+    <string name="rojo">rojo</string>
+    <string name="negro">negro</string>
+    <string name="nombre">Nombre</string>
+
+</resources>
