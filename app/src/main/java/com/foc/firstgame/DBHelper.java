@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //Se llama cuando se instancia DBHelper
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE usuarios(nombre TEXT PRIMARY KEY, puntuacion INT )");exe
+        db.execSQL("CREATE TABLE usuarios(nombre TEXT PRIMARY KEY, puntuacion INT )");
     }
     //Se llama cuando la DATABASE_VERSION es mayor
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
