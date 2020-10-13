@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             btnCambio.setText("rojo");
             btnCambio.setTextColor(Color.RED);
             btnCambio.startAnimation(animacion);
+            //TEST
 
         }
     }
