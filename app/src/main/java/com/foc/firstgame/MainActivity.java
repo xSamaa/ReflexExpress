@@ -11,11 +11,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private int puntuacion;
     private DBHelper db =null;
     private Animation animacion;
+
+    private TextView tvTemporizador;
+    private CountDownTimer countDownTimer;
+    private long restanteMilisegundos = 10000; // 10 Segundos.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,28 @@ public class MainActivity extends AppCompatActivity {
 
         animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
 
-        colorAutomatico();
+        tvTemporizador = findViewById(R.id.tvTemporizador);
+        timer();
 
+        colorAutomatico();
+    }
+
+    private void timer() {
+        countDownTimer = new CountDownTimer(restanteMilisegundos,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tvTemporizador.setText(String.valueOf(millisUntilFinished/1000));
+
+            }
+
+            @Override
+            public void onFinish() {
+                finaliza();
+            }
+        }.start();
 
     }
+
 
     public void onClick(View view) {
 
@@ -89,12 +113,10 @@ public class MainActivity extends AppCompatActivity {
         aleatorio = Math.random()<0.5;
 
         if (aleatorio){
-
             btnCambio.setBackgroundColor(Color.BLACK);
             btnCambio.setText("negro");
             btnCambio.setTextColor(Color.BLACK);
             btnCambio.startAnimation(animacion);
-
 
         }else{
             btnCambio.setBackgroundColor(Color.RED);
@@ -102,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
             btnCambio.setTextColor(Color.RED);
             btnCambio.startAnimation(animacion);
             //TEST
-
         }
     }
 
