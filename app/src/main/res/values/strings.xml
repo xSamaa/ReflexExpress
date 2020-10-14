@@ -5,5 +5,9 @@
     <string name="rojo">rojo</string>
     <string name="negro">negro</string>
     <string name="nombre">Nombre</string>
+    <string name="user">Usuario</string>
+    <string name="pass">Contraseña</string>
+    <string name="login">Sign in</string>
+    <string name="registrar"> Sign up </string>
 
 </resources>

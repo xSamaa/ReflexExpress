@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu">
+    tools:context=".Menu"
+    android:background="#223147">
 
     <Button
         android:id="@+id/btnClasi"
@@ -17,7 +18,8 @@
         android:text="@string/clasi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnJugar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnJugar"
+        android:background="@drawable/btnredondeado"/>
 
     <Button
         android:id="@+id/btnJugar"
@@ -30,7 +32,8 @@
         android:text="@string/jugar"
         app:layout_constraintBottom_toTopOf="@+id/btnClasi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        android:background="@drawable/btnredondeado"/>
 
     <EditText
         android:id="@+id/txtNombre"
@@ -41,10 +44,10 @@
         android:layout_marginBottom="15dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/nombre"
         app:layout_constraintBottom_toTopOf="@+id/btnJugar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Nombre"/>
 
     <ListView
         android:id="@+id/lvLista"
@@ -57,6 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClasi" />
+        app:layout_constraintTop_toBottomOf="@+id/btnClasi"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
