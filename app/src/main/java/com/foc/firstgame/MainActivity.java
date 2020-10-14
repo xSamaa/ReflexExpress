@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         btnDer = findViewById(R.id.btnDer);
         btnCambio = findViewById(R.id.btnCambio);
 
-        Context context;
         animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
 
         colorAutomatico();
@@ -43,24 +42,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void clickIzquierdo(View view) {
-        if(btnCambio.getText().equals(btnIzq.getText())){
-            puntuacion++;
-            colorAutomatico();
-        }else{
-            finaliza();
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.btnIzq:
+                if(btnCambio.getText().equals(btnIzq.getText())){
+                    puntuacion++;
+                    colorAutomatico();
+                }else{
+                    finaliza();
+                }
+                break;
+            case R.id.btnDer:
+                if(btnCambio.getText().equals(btnDer.getText())){
+                    puntuacion++;
+                    colorAutomatico();
+                }else{
+                    finaliza();
+                }
+                break;
         }
     }
 
-    public void clickDerecho(View view) {
-        if(btnCambio.getText().equals(btnDer.getText())){
-            puntuacion++;
-            colorAutomatico();
-        }else{
-            finaliza();
-
-        }
-    }
 
     private void finaliza() {
         db=new DBHelper(this,"clasificacion", null,1);

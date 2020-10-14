@@ -14,8 +14,8 @@
         android:layout_marginEnd="51dp"
         android:layout_marginBottom="216dp"
         android:background="@android:color/holo_red_dark"
-        android:onClick="clickIzquierdo"
 
+        android:onClick="onClick"
         android:text="@string/rojo"
         android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="216dp"
         android:background="@android:color/black"
-        android:onClick="clickDerecho"
+        android:onClick="onClick"
         android:text="@string/negro"
         android:textColor="#020202"
         app:layout_constraintBottom_toBottomOf="parent"
