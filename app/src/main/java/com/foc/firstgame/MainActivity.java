@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private DBHelper db =null;
     private Animation animacion;
 
-    private TextView tvTemporizador;
+    private TextView tvTemporizador,tvPuntuacion;
     private CountDownTimer countDownTimer;
     private long restanteMilisegundos = 10000; // 10 Segundos.
 
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         btnCambio = findViewById(R.id.btnCambio);
 
         animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
+
+        tvPuntuacion = findViewById(R.id.tvPuntuacion);
 
         tvTemporizador = findViewById(R.id.tvTemporizador);
         timer();
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.btnIzq:
                 if(btnCambio.getText().equals(btnIzq.getText())){
-                    puntuacion++;
+                    punto();
                     colorAutomatico();
                 }else{
                     finaliza();
@@ -79,13 +81,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnDer:
                 if(btnCambio.getText().equals(btnDer.getText())){
-                    puntuacion++;
+                    punto();
                     colorAutomatico();
                 }else{
                     finaliza();
                 }
                 break;
         }
+    }
+
+    private void punto() {
+        puntuacion++;
+        tvPuntuacion.setText(String.valueOf(puntuacion));
     }
 
 
