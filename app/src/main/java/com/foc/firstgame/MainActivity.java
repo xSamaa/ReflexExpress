@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private DBHelper db =null;
     private Animation animacion;
 
-    private TextView tvTemporizador,tvPuntuacion;
-    private CountDownTimer countDownTimer;
+    private TextView tvTemporizador,tvPuntuacion,tvTiempo;
+    private CountDownTimer countDownTimer,countDownTimer2;
     private long restanteMilisegundos = 10000; // 10 Segundos.
+    private long tresSegundos = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +47,36 @@ public class MainActivity extends AppCompatActivity {
         tvPuntuacion = findViewById(R.id.tvPuntuacion);
 
         tvTemporizador = findViewById(R.id.tvTemporizador);
-        timer();
+        tvTiempo = findViewById(R.id.tvTiempo);
 
+        cuentaAtras();
+    }
+    private void empiezar(){
+        timer();
         colorAutomatico();
+    }
+
+    private void cuentaAtras(){
+        btnCambio.setVisibility(View.INVISIBLE);
+        countDownTimer2 = new CountDownTimer(tresSegundos,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tvTiempo.setText(String.valueOf(millisUntilFinished/1000+1));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTiempo.setVisibility(View.INVISIBLE);
+                empiezar();
+            }
+        }.start();
     }
 
     private void timer() {
         countDownTimer = new CountDownTimer(restanteMilisegundos,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                tvTemporizador.setText(String.valueOf(millisUntilFinished/1000));
+                tvTemporizador.setText(String.valueOf(millisUntilFinished/1000+1));
 
             }
 
@@ -117,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void colorAutomatico() {
+        btnCambio.setVisibility(View.VISIBLE);
         aleatorio = Math.random()<0.5;
 
         if (aleatorio){
