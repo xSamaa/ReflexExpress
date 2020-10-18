@@ -37,18 +37,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnCambio"
-        android:layout_width="185dp"
-        android:layout_height="185dp"
-        android:layout_marginStart="113dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="492dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/btnDer"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -86,4 +74,30 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="150dp"
         android:textColor="#99000000"/>
+
+    <ImageView
+        android:id="@+id/blueStar"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star_icon" />
+
+    <ImageView
+        android:id="@+id/redStar"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star_icon_red" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

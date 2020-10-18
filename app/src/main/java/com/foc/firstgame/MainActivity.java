@@ -17,12 +17,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnIzq, btnDer, btnCambio;
+    private Button btnIzq, btnDer;
     private boolean aleatorio;
     private int puntuacion;
     private DBHelper db =null;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private long restanteMilisegundos = 10000; // 10 Segundos.
     private long tresSegundos = 3000;
 
+    private ImageView redStar, blueStar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnIzq = findViewById(R.id.btnIzq);
         btnDer = findViewById(R.id.btnDer);
-        btnCambio = findViewById(R.id.btnCambio);
 
         animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
 
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         tvTemporizador = findViewById(R.id.tvTemporizador);
         tvTiempo = findViewById(R.id.tvTiempo);
+
+        redStar = findViewById(R.id.redStar);
+        blueStar = findViewById(R.id.blueStar);
 
         cuentaAtras();
     }
@@ -57,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cuentaAtras(){
-        btnCambio.setVisibility(View.INVISIBLE);
+
         countDownTimer2 = new CountDownTimer(tresSegundos,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -93,15 +98,15 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.btnIzq:
-                if(btnCambio.getText().equals(btnIzq.getText())){
+                if(redStar.getVisibility()==View.VISIBLE){
                     punto();
                     colorAutomatico();
-                }else{
+                }else {
                     finaliza();
                 }
                 break;
             case R.id.btnDer:
-                if(btnCambio.getText().equals(btnDer.getText())){
+                if(blueStar.getVisibility()==View.VISIBLE){
                     punto();
                     colorAutomatico();
                 }else{
@@ -114,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
     private void punto() {
         puntuacion++;
         tvPuntuacion.setText(String.valueOf(puntuacion));
+        blueStar.setVisibility(View.INVISIBLE);
+        redStar.setVisibility(View.INVISIBLE);
     }
 
 
@@ -138,22 +145,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void colorAutomatico() {
-        btnCambio.setVisibility(View.VISIBLE);
         aleatorio = Math.random()<0.5;
+        redStar.setVisibility(View.INVISIBLE);
+        blueStar.setVisibility(View.INVISIBLE);
 
         if (aleatorio){
-            btnCambio.setBackgroundColor(Color.BLACK);
-            btnCambio.setText("negro");
-            btnCambio.setTextColor(Color.BLACK);
-            btnCambio.startAnimation(animacion);
+            blueStar.setVisibility(View.VISIBLE);
+            blueStar.startAnimation(animacion);
 
         }else{
-            btnCambio.setBackgroundColor(Color.RED);
-            btnCambio.setText("rojo");
-            btnCambio.setTextColor(Color.RED);
-            btnCambio.startAnimation(animacion);
-            //TEST
+            redStar.setVisibility(View.VISIBLE);
+            redStar.startAnimation(animacion);
         }
-    }
 
+    }
 }
