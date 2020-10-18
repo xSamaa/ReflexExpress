@@ -9,45 +9,39 @@
 
     <Button
         android:id="@+id/btnClasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="162dp"
+        android:layout_width="114dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/btnredondeado"
         android:onClick="verClasi"
         android:text="@string/clasi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnJugar"
-        android:background="@drawable/btnredondeado"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnJugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/btnredondeado"
         android:onClick="verJugar"
         android:text="@string/jugar"
-        app:layout_constraintBottom_toTopOf="@+id/btnClasi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-        android:background="@drawable/btnredondeado"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtNombre"
         android:layout_width="124dp"
         android:layout_height="54dp"
-        android:layout_marginStart="128dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="15dp"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnJugar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="Nombre"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lvLista"
@@ -61,5 +55,15 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnClasi"/>
+
+    <Switch
+        android:id="@+id/sTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:text="Turbo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnJugar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
