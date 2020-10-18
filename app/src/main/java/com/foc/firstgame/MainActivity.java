@@ -21,10 +21,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnIzq, btnDer;
-    private boolean aleatorio;
     private int puntuacion;
     private DBHelper db =null;
     private Animation animacion;
@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnIzq = findViewById(R.id.btnIzq);
-        btnDer = findViewById(R.id.btnDer);
 
         animacion = AnimationUtils.loadAnimation(this, R.anim.scale);
 
@@ -119,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
     private void punto() {
         puntuacion++;
         tvPuntuacion.setText(String.valueOf(puntuacion));
-        blueStar.setVisibility(View.INVISIBLE);
-        redStar.setVisibility(View.INVISIBLE);
     }
 
 
@@ -145,13 +141,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void colorAutomatico() {
-        aleatorio = Math.random()<0.5;
-        redStar.setVisibility(View.INVISIBLE);
-        blueStar.setVisibility(View.INVISIBLE);
 
-        if (aleatorio){
+        Random rd = new Random();
+        redStar.setVisibility(View.INVISIBLE);
+        redStar.clearAnimation();
+        blueStar.setVisibility(View.INVISIBLE);
+        blueStar.clearAnimation();
+
+        if (rd.nextBoolean()){
             blueStar.setVisibility(View.VISIBLE);
             blueStar.startAnimation(animacion);
+
 
         }else{
             redStar.setVisibility(View.VISIBLE);
