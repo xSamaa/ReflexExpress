@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.btnIzq:
+            case R.id.btnRed:
                 if(redStar.getVisibility()==View.VISIBLE){
                     punto();
                     colorAutomatico();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     finaliza();
                 }
                 break;
-            case R.id.btnDer:
+            case R.id.btnblue:
                 if(blueStar.getVisibility()==View.VISIBLE){
                     punto();
                     colorAutomatico();
@@ -141,18 +141,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void colorAutomatico() {
-
         Random rd = new Random();
         redStar.setVisibility(View.INVISIBLE);
-        redStar.clearAnimation();
         blueStar.setVisibility(View.INVISIBLE);
+        redStar.clearAnimation();
         blueStar.clearAnimation();
-
         if (rd.nextBoolean()){
             blueStar.setVisibility(View.VISIBLE);
             blueStar.startAnimation(animacion);
-
-
         }else{
             redStar.setVisibility(View.VISIBLE);
             redStar.startAnimation(animacion);
