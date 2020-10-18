@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class Menu extends AppCompatActivity {
 
     private EditText txtNombre;
     private ListView lvLista;
+    private Switch sTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class Menu extends AppCompatActivity {
 
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         lvLista = (ListView) findViewById(R.id.lvLista);
+        sTime = findViewById(R.id.sTime);
     }
 
     public void verClasi(View view) {
@@ -53,8 +56,15 @@ public class Menu extends AppCompatActivity {
     }
 
     public void verJugar(View view) {
+
+        boolean turbo=false;
+        if(sTime.isChecked()){
+            turbo= true;
+        }
+
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("nombre", txtNombre.getText().toString());
+        intent.putExtra("turbo", turbo);
         startActivity(intent);
 
     }

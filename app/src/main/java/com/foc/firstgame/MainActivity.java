@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvTemporizador,tvPuntuacion,tvTiempo;
     private CountDownTimer countDownTimer,countDownTimer2;
-    private long restanteMilisegundos = 10000; // 10 Segundos.
+    private long duracion = 10000; // 10 Segundos.
     private long tresSegundos = 3000;
 
     private ImageView redStar, blueStar;
@@ -55,8 +55,22 @@ public class MainActivity extends AppCompatActivity {
         cuentaAtras();
     }
     private void empiezar(){
+        tiempoPartida();
         timer();
         colorAutomatico();
+    }
+
+    private long tiempoPartida() {
+
+        boolean turbo = getIntent().getBooleanExtra("turbo",false);
+        if(turbo){
+            duracion = 5000;
+        }else{
+            duracion = 10000;
+        }
+
+
+        return duracion;
     }
 
     private void cuentaAtras(){
@@ -76,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void timer() {
-        countDownTimer = new CountDownTimer(restanteMilisegundos,1000) {
+        countDownTimer = new CountDownTimer(duracion,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 tvTemporizador.setText(String.valueOf(millisUntilFinished/1000+1));
