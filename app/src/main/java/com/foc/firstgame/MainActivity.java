@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -28,13 +30,18 @@ public class MainActivity extends AppCompatActivity {
     private int puntuacion;
     private DBHelper db =null;
     private Animation animacion;
+    private SoundPool sp;
 
     private TextView tvTemporizador,tvPuntuacion,tvTiempo;
     private CountDownTimer countDownTimer,countDownTimer2;
     private long duracion = 10000; // 10 Segundos.
     private long tresSegundos = 3000;
 
+    int sonidoPunto;
+
     private ImageView redStar, blueStar;
+
+    private boolean finalizado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,23 +142,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void finaliza() {
-        db=new DBHelper(this,"clasificacion", null,1);
-        SQLiteDatabase baseDeDatos = db.getWritableDatabase();
 
-        String nombre = getIntent().getStringExtra("nombre");
+        if(!finalizado){
+            db=new DBHelper(this,"clasificacion", null,1);
+            SQLiteDatabase baseDeDatos = db.getWritableDatabase();
 
-        ContentValues registro = new ContentValues();
-        registro.put("nombre", nombre);
-        registro.put("puntuacion",puntuacion);
+            String nombre = getIntent().getStringExtra("nombre");
 
-        baseDeDatos.insert("usuarios",null, registro);
-        baseDeDatos.close();
+            ContentValues registro = new ContentValues();
+            registro.put("nombre", nombre);
+            registro.put("puntuacion",puntuacion);
+
+            baseDeDatos.insert("usuarios",null, registro);
+            baseDeDatos.close();
 
 
-        Intent intent = new Intent(this, Menu.class);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(), getIntent().getStringExtra("nombre") +", tu puntuación es " + puntuacion, Toast.LENGTH_SHORT).show();
-
+            Intent intent = new Intent(this, Menu.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), getIntent().getStringExtra("nombre") +", tu puntuación es " + puntuacion, Toast.LENGTH_SHORT).show();
+            finalizado = true;
+        }
     }
 
     public void colorAutomatico() {
@@ -167,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
             redStar.setVisibility(View.VISIBLE);
             redStar.startAnimation(animacion);
         }
+    }
 
+    public void sonido(){
+        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
     }
 }
