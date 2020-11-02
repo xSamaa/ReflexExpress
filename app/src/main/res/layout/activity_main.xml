@@ -32,18 +32,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="10" />
 
-    <TextView
-        android:id="@+id/tvTiempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="150dp"
-        android:textColor="#99000000"/>
-
     <ImageView
         android:id="@+id/blueStar"
         android:layout_width="240dp"
@@ -93,6 +81,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/star_icon" />
+
+    <TextView
+        android:id="@+id/tvTiempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textColor="#99000000"
+        android:textSize="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
